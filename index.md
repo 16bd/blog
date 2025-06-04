@@ -2,13 +2,13 @@
 layout: home
 sidebar: false
 
-title: Nólëbase
+title: 百搭
 titleTemplate: 记录回忆，知识和畅想的地方
 
 hero:
-  name: g~Nj$3J2^
-  text: 记录回忆，知识和畅想的地方
-  tagline: 以 Nólëbase 为名，读作 nole-base，取自意为「知识」的昆雅语 nólë 和意为「基础」的英文 base，即「知识库」
+  name: 百搭
+  text: 深度之下的广度才是有效的
+  tagline: 先保持极度专注，想不出答案时再将注意力转换到另一件与此毫不相干的事情上。即事前聚精会神，让意识极度投入；事后完全忘记，让意识彻底撒手。这样，灵感和答案就会大概率地出现。
   image:
     src: /logo.svg
     alt: Vitest
