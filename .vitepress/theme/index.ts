@@ -106,7 +106,7 @@ const ExtendedTheme: Theme = {
     })
 
     app.use(NolebaseInlineLinkPreviewPlugin)
-    app.use(NolebaseGitChangelogPlugin)
+    //app.use(NolebaseGitChangelogPlugin)
     app.use(NolebasePagePropertiesPlugin<{
       tags: string[]
       progress: number
@@ -176,7 +176,7 @@ const ExtendedTheme: Theme = {
       // The default is true, which means enabled, this parameter can be ignored;
       // If it is false, it means it is not enabled.
       // You can use `comment: true` preface to enable it separately on the page.
-      true
+      false
     );
   }
 }
