@@ -1,6 +1,10 @@
 <script setup lang="ts">
 </script>
 
+<template>
+
+</template>
+
 <style scoped>
 .doc-before-footer-cc-block {
   color: var(--vp-c-text-2);
