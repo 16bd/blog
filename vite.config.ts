@@ -24,18 +24,15 @@ export default defineConfig(async () => {
       GitChangelog({
         repoURL: () => githubRepoLink,
       }),
-      GitChangelogMarkdownSection({
-        getChangelogTitle: (): string => {
-          return '文件历史'
-        },
-        getContributorsTitle: (): string => {
-          return '贡献者'
-        },
-        excludes: [
-          'toc.md',
-          'index.md',
-        ],
-      }),
+      // GitChangelogMarkdownSection({
+      //   getContributorsTitle: (): string => {
+      //     return '贡献者'
+      //   },
+      //   excludes: [
+      //     'toc.md',
+      //     'index.md',
+      //   ],
+      // }),
       PageProperties(),
       PagePropertiesMarkdownSection({
         excludes: [
