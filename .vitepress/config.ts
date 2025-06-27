@@ -125,6 +125,10 @@ export default defineConfig({
       name: 'google-adsense-account',
       content: 'ca-pub-8880838852405341',
     }],
+    ['meta', {
+      name: 'ppck-ver',
+      content: '372c616635b8ad3fb61918ab8103ae1b',
+    }],
     // Proxying Plausible through Netlify | Plausible docs
     // https://plausible.io/docs/proxy/guides/netlify
     ['script', { 'defer': 'true', 'data-domain': 'nolebase.ayaka.io', 'data-api': '/api/v1/page-external-data/submit', 'src': '/assets/page-external-data/js/script.js' }],
