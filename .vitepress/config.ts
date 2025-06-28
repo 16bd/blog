@@ -129,6 +129,10 @@ export default defineConfig({
       name: 'ppck-ver',
       content: '372c616635b8ad3fb61918ab8103ae1b',
     }],
+    ['meta', {
+      name: 'mnd-ver',
+      content: 'lbll2shvnggovba1gpbdra',
+    }],
     // Proxying Plausible through Netlify | Plausible docs
     // https://plausible.io/docs/proxy/guides/netlify
     ['script', { 'defer': 'true', 'data-domain': 'nolebase.ayaka.io', 'data-api': '/api/v1/page-external-data/submit', 'src': '/assets/page-external-data/js/script.js' }],
