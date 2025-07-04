@@ -15,21 +15,25 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读
-      link: /笔记/index
+      link: /技术专栏/index
 
 features:
-  - title: 多样的主题和内容
-    details: 本知识库和所生成的页面均由创作者们维护，涉及到生活中各方面知识和内容，也不乏我们的回忆和畅想。
+  - title: 技术专栏：深度与广度兼备
+    details: 覆盖前端、后端、运维、云原生等多领域技术内容，既有实用的开发技巧，也有系统性的架构思考，助你在技术成长路上多一些感悟。
     icon: 🌈
-  - title: 皆为 Markdown
-    details: 使用 Markdown 和 Markdown 拓展语法编写和记录笔记，每一个页面都是 Markdown 文件。
+    link: /技术专栏/index
+  - title: 职场感悟：成长与经验沉淀
+    details: 分享在职场中看到听到的成长经历、项目管理心得、团队协作体会，以及个人职业发展的思考，助你在技术之外提升软实力，实现全面进步。
     icon: 📃
-  - title: 由 VitePress 驱动
-    details: 基于 Vite 的强大静态文档页面生成器，它生成了我们知识库的页面，提供了简单易用的主题和工具。
+    link: /职场感悟/index
+  - title: 开源推荐：工具与资源精选
+    details: 定期推荐高质量的开源项目与实用工具，涵盖开发、效率、自动化等多个方向，助你发现并善用优秀的开源资源，提升工作与学习效率。
     icon: 🚀
-  - title: 由 Obsidian 驱动
-    details: 强大的知识库管理工具，支持花样繁多的插件和拓展，让知识管理变得更加简单。
+    link: /开源推荐/index
+  - title: 杂谈随笔：思想碰撞与灵感火花
+    details: 不局限于技术，记录学习心得、行业观察、成长感悟等杂谈内容，鼓励跨界思考与自由表达，让知识库成为灵感与思想的汇聚地。
     icon: 🗃
+    link: /杂谈随笔/index
 ---
 
 <HomePage />

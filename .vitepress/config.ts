@@ -228,7 +228,10 @@ export default defineConfig({
     },
     nav: [
       { text: '主页', link: '/' },
-      { text: '笔记', link: '/笔记/' },
+      { text: '技术专栏', link: '/技术专栏/' },
+      { text: '职场感悟', link: '/职场感悟/' },
+      { text: '开源推荐', link: '/开源推荐/' },
+      { text: '杂谈随笔', link: '/杂谈随笔/' },
       { text: '最近更新', link: '/toc' },
     ],
     sidebar,
