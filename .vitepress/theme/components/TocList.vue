@@ -4,15 +4,29 @@ import { computed } from 'vue'
 import type { ArticleTree } from '../../../scripts/types/metadata'
 import { sidebar } from '../../docsMetadata.json'
 
-const list = computed(() => {
-  const list: ArticleTree[] = ([] as any).concat(...sidebar.map(series => [...series?.items.map(item => ({ ...item, category: series.text }))]))
-  for (let i = 0; i < list.length; i++) {
-    const items = list[i].items
-    if (items)
-
-      list.push(...items.map(item => ({ ...item, category: list[i].category })))
+function flattenSidebar(sidebar: ArticleTree[], parentCategory?: string): ArticleTree[] {
+  const result: ArticleTree[] = []
+  for (const node of sidebar) {
+    if (Array.isArray(node.items) && node.items.length > 0) {
+      result.push(...flattenSidebar(node.items, node.text))
+    }
+    if (node.link) {
+      // 只保留 ArticleTree 的核心字段，忽略 collapsed/items
+      result.push({
+        index: node.index,
+        text: node.text,
+        link: node.link,
+        lastUpdated: node.lastUpdated,
+        category: parentCategory || node.text,
+      })
+    }
   }
-  return list.filter(item => item.link)
+  return result
+}
+
+const list = computed(() => {
+  // 合并所有栏目下的 sidebar，递归收集所有有 link 的页面
+  return Object.values(sidebar).flatMap(arr => flattenSidebar(arr, undefined))
 })
 
 const sortedList = computed(() => {

@@ -10,7 +10,8 @@ import { UnlazyImages } from '@nolebase/markdown-it-unlazy-img'
 
 import { discordLink, githubRepoLink, siteDescription, siteName, targetDomain } from '../metadata'
 import { creatorNames, creatorUsernames } from './creators'
-import { sidebar } from './docsMetadata.json'
+import docsMetadata from './docsMetadata.json'
+import type { DefaultTheme } from 'vitepress'
 
 export default defineConfig({
   vue: {
@@ -234,7 +235,7 @@ export default defineConfig({
       { text: '杂谈随笔', link: '/杂谈随笔/' },
       { text: '最近更新', link: '/toc' },
     ],
-    sidebar,
+    sidebar: docsMetadata.sidebar,
   },
   markdown: {
     theme: {

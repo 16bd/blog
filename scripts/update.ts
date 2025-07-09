@@ -9,7 +9,10 @@ import Git from 'simple-git'
 import matter from 'gray-matter'
 import uniq from 'lodash/uniq'
 import TagsAlias from '../.vitepress/docsTagsAlias.json'
-import type { ArticleTree, DocsMetadata, DocsTagsAlias, Tag } from './types/metadata'
+import { include } from '../metadata'
+import type { ArticleTree, DocsMetadata as OldDocsMetadata, DocsTagsAlias, Tag } from './types/metadata'
+
+type DocsMetadata = Omit<OldDocsMetadata, 'sidebar'> & { sidebar: Record<string, ArticleTree[]> }
 
 const dir = './'
 const target = '技术专栏/'
@@ -74,8 +77,11 @@ async function addRouteItem(indexes: ArticleTree[], path: string, upgradeIndex =
       linkItems.shift()
   })
 
-  if (linkItems.length === 1)
+  if (linkItems.length === 1) {
+    // 根目录下的 md 文件直接 push 到 sidebar
+    indexes.push(item)
     return
+  }
 
   indexes = addRouteItemRecursion(indexes, item, linkItems, upgradeIndex)
 }
@@ -130,9 +136,9 @@ function addRouteItemRecursion(indexes: ArticleTree[], item: any, path: string[]
  * @param docs 符合 glob 的文件列表
  * @param docsMetadata docsMetadata.json 的内容
  */
-async function processSidebar(docs: string[], docsMetadata: DocsMetadata) {
+async function processSidebar(docs: string[], sidebar: ArticleTree[]) {
   await Promise.all(docs.map(async (docPath: string) => {
-    await addRouteItem(docsMetadata.sidebar, docPath)
+    await addRouteItem(sidebar, docPath)
   }))
 }
 
@@ -343,22 +349,23 @@ async function processDocs(docs: string[], docsMetadata: DocsMetadata) {
 
 async function run() {
   let now = (new Date()).getTime()
-  const docs = await listPages(dir, { target })
-  console.log('listed pages in', `${(new Date()).getTime() - now}ms`)
-  now = (new Date()).getTime()
+  const docsMetadata: DocsMetadata = { docs: [], sidebar: {}, tags: [] }
 
-  const docsMetadata: DocsMetadata = { docs: [], sidebar: [], tags: [] }
+  // 移除根目录下 md 文件 sidebar['/'] 逻辑
+  // const rootDocs = await listPages(dir, { target: '' })
+  // const rootSidebar: ArticleTree[] = []
+  // await processSidebar(rootDocs, rootSidebar)
+  // docsMetadata.sidebar['/'] = sidebarSort(rootSidebar, folderTop)
 
-  await processDocs(docs, docsMetadata)
-  console.log('processed docs in', `${(new Date()).getTime() - now}ms`)
-  now = (new Date()).getTime()
-
-  await processSidebar(docs, docsMetadata)
-  console.log('processed sidebar in', `${(new Date()).getTime() - now}ms`)
-  now = (new Date()).getTime()
-
-  docsMetadata.sidebar = sidebarSort(docsMetadata.sidebar, folderTop)
-  console.log('processed sidebar sort in', `${(new Date()).getTime() - now}ms`)
+  for (const col of include) {
+    let docs = await listPages(dir, { target: `${col}/` })
+    docs = docs.filter(doc => !doc.endsWith('/index.md'))
+    await processDocs(docs, docsMetadata)
+    // 单独 sidebar 结构
+    const sidebar: ArticleTree[] = []
+    await processSidebar(docs, sidebar)
+    docsMetadata.sidebar[`/${col}/`] = sidebarSort(sidebar, folderTop)
+  }
 
   await fs.writeJSON(join(DIR_VITEPRESS, 'docsMetadata.json'), docsMetadata, { spaces: 2 })
 }
