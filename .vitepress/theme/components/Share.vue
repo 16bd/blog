@@ -50,27 +50,8 @@ async function createShareLink(url: string) {
 }
 
 async function getShareLink(): Promise<string> {
-  // 本身就是短地址或不是生产环境的话不处理，节省资源
-  if (
-    window.location.hostname !== plainTargetDomain
-    || window.location.pathname.length <= 20
-  ) return window.location.href
-
-  const url = window.location.href
-
-  let linkHash = ''
-  const existingLink = await findExistingLink(url)
-  if (existingLink !== '') {
-    linkHash = existingLink
-  }
-  else {
-    const newLink = await createShareLink(url)
-    if (newLink === null)
-      return window.location.href
-    linkHash = newLink.shortUrl
-  }
-
-  return `${window.location.origin}/to/${linkHash}`
+  // 直接返回当前页面链接，不再生成短地址
+  return window.location.href
 }
 
 const shareLink = ref('')
