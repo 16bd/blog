@@ -137,8 +137,10 @@ export default defineConfig({
     // Proxying Plausible through Netlify | Plausible docs
     // https://plausible.io/docs/proxy/guides/netlify
     ['script', { 'defer': 'true', 'data-domain': 'nolebase.ayaka.io', 'data-api': '/api/v1/page-external-data/submit', 'src': '/assets/page-external-data/js/script.js' }],
+    
     // Google AdSense
-    ['script', { 'async': 'true', 'src': 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8880838852405341', 'crossorigin': 'anonymous' }],
+    // ['script', { 'async': 'true', 'src': 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8880838852405341', 'crossorigin': 'anonymous' }],
+    
     // // PopCash Advertising
     // ['script', { 'type': 'text/javascript' }, `
     //   var uid = '491706';
