@@ -4,14 +4,12 @@
 <div id="webtraf_16183" style="height: 60px; width: 468px;"><script async="" src="https://webtrafic.ru/ads.php?uid=16183"></script></div>
 
 
-<!-- ## ADVERTICA
-<ins style="width: 0px;height:0px" data-width="0" data-height="0" class="y33c0116b12" data-domain="//data963.click" data-affquery="/3c68ebb999d8c82367cb/33c0116b12/?placementName=default"><script src="//data963.click/js/responsive.js" async></script></ins> -->
-
-
 ## Mondiad
 <div data-mndbanid="e69d76b5-ef09-45e8-be2a-3e4d9252ea38"></div>
 
+
+## ADVERTICA
+<div id="advertica"><script type="text/javascript" src="//data159.click/e85ba6257068df3f0bbc/f05b9bc73a/?placementName=default"></script></div>
+
 ## PopCash
-<div id="popcash">
-<script type="text/javascript">var uid = '491706';var wid = '742094';var pop_tag = document.createElement('script');pop_tag.src='//cdn.popcash.net/show.js';document.body.appendChild(pop_tag);pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//cdn2.popcash.net/show.js';document.body.appendChild(pop_tag)};</script>
-</div>
+<div id="popcash"><script type="text/javascript">var uid = '491706';var wid = '742094';var pop_tag = document.createElement('script');pop_tag.src='//cdn.popcash.net/show.js';document.body.appendChild(pop_tag);pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//cdn2.popcash.net/show.js';document.body.appendChild(pop_tag)};</script></div>
