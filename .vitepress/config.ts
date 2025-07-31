@@ -122,34 +122,34 @@ export default defineConfig({
       name: 'msapplication-TileColor',
       content: '#603cba',
     }],
+     //Google AdSense
     ['meta', {
       name: 'google-adsense-account',
       content: 'ca-pub-8880838852405341',
     }],
-    ['meta', {
-      name: 'ppck-ver',
-      content: '372c616635b8ad3fb61918ab8103ae1b',
-    }],
+    ['script', { 'async': 'true', 'src': 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8880838852405341', 'crossorigin': 'anonymous' }],
+    // Mondiad
     ['meta', {
       name: 'mnd-ver',
       content: 'lbll2shvnggovba1gpbdra',
     }],
+    ['script', { 'async': 'true', 'src': 'https://ss.mrmnd.com/banner.js' }],
     // Proxying Plausible through Netlify | Plausible docs
     // https://plausible.io/docs/proxy/guides/netlify
     ['script', { 'defer': 'true', 'data-domain': 'nolebase.ayaka.io', 'data-api': '/api/v1/page-external-data/submit', 'src': '/assets/page-external-data/js/script.js' }],
     
-    //Google AdSense
-    ['script', { 'async': 'true', 'src': 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8880838852405341', 'crossorigin': 'anonymous' }],
-    
     // // PopCash Advertising
+    // ['meta', {
+    //   name: 'ppck-ver',
+    //   content: '372c616635b8ad3fb61918ab8103ae1b',
+    // }],
     // ['script', { 'type': 'text/javascript' }, `
     //   var uid = '491706';
     //   var wid = '742094';
     //   var pop_tag = document.createElement('script');pop_tag.src='//cdn.popcash.net/show.js';document.body.appendChild(pop_tag);
     //   pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//cdn2.popcash.net/show.js';document.body.appendChild(pop_tag)};
     // `],
-    // Mondiad
-    ['script', { 'async': 'true', 'src': 'https://ss.mrmnd.com/banner.js' }],
+
   ],
   themeConfig: {
     outline: { label: '页面大纲', level: 'deep' },
