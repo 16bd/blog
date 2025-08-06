@@ -159,7 +159,7 @@ export default defineConfig({
     //   text: '编辑本页面',
     // },
     footer: {
-      message: '用 <span style="color: #e25555;">&#9829;</span> 撰写',
+      message: '用 <span style="color: #e25555;">&#9829;</span> 撰写    <a href="privacy_policy.html">隐私政策</a> ',
       copyright:
         ' © 2025 百搭',
     },
