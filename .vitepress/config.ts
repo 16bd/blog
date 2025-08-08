@@ -122,12 +122,12 @@ export default defineConfig({
       name: 'msapplication-TileColor',
       content: '#603cba',
     }],
-     //Google AdSense
-    ['meta', {
-      name: 'google-adsense-account',
-      content: 'ca-pub-8880838852405341',
-    }],
-    ['script', { 'async': 'true', 'src': 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8880838852405341', 'crossorigin': 'anonymous' }],
+    // //Google AdSense
+    // ['meta', {
+    //   name: 'google-adsense-account',
+    //   content: 'ca-pub-8880838852405341',
+    // }],
+    // ['script', { 'async': 'true', 'src': 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8880838852405341', 'crossorigin': 'anonymous' }],
     // Mondiad
     ['meta', {
       name: 'mnd-ver',
