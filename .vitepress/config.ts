@@ -143,12 +143,13 @@ export default defineConfig({
       name: 'ppck-ver',
       content: '372c616635b8ad3fb61918ab8103ae1b',
     }],
-    // ['script', { 'type': 'text/javascript' }, `
-    //   var uid = '491706';
-    //   var wid = '742094';
-    //   var pop_tag = document.createElement('script');pop_tag.src='//cdn.popcash.net/show.js';document.body.appendChild(pop_tag);
-    //   pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//cdn2.popcash.net/show.js';document.body.appendChild(pop_tag)};
-    // `],
+    ['script', { 'type': 'text/javascript' }, `
+      var uid = '491706';
+      var wid = '742094';
+      var pop_fback = 'up';
+      var pop_tag = document.createElement('script');pop_tag.src='//cdn.popcash.net/show.js';document.body.appendChild(pop_tag);
+      pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//cdn2.popcash.net/show.js';document.body.appendChild(pop_tag)};
+    `],
 
   ],
   themeConfig: {
