@@ -138,11 +138,11 @@ export default defineConfig({
     // https://plausible.io/docs/proxy/guides/netlify
     ['script', { 'defer': 'true', 'data-domain': 'nolebase.ayaka.io', 'data-api': '/api/v1/page-external-data/submit', 'src': '/assets/page-external-data/js/script.js' }],
     
-    // // PopCash Advertising
-    // ['meta', {
-    //   name: 'ppck-ver',
-    //   content: '372c616635b8ad3fb61918ab8103ae1b',
-    // }],
+    // PopCash Advertising
+    ['meta', {
+      name: 'ppck-ver',
+      content: '372c616635b8ad3fb61918ab8103ae1b',
+    }],
     // ['script', { 'type': 'text/javascript' }, `
     //   var uid = '491706';
     //   var wid = '742094';
