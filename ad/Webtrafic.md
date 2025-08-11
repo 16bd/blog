@@ -9,14 +9,14 @@
 
 
 <!-- ## ADVERTICA
-<ins style="width: 300px;height:250px" data-width="300" data-height="250" class="q1069d0d3ab" data-domain="//data159.click" data-affquery="/0c28f164a5c11763d08f/1069d0d3ab/?placementName=default"><script src="//data159.click/js/responsive.js" async></script></ins>
--->
+<ins style="width: 468px;height:60px" data-width="468" data-height="60" class="i2c082ebde1" data-domain="//data159.click" data-affquery="/910fb46f1b4373830609/2c082ebde1/?placementName=16bd"><script src="//data159.click/js/responsive.js" async></script></ins> -->
+
 
 ## PopCash
-<script type="text/javascript">
+<div id="popcash"><script type="text/javascript">
    var uid = '491706';
    var wid = '742094';
    var pop_fback = 'up';
    var pop_tag = document.createElement('script');pop_tag.src='//cdn.popcash.net/show.js';document.body.appendChild(pop_tag);
    pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//cdn2.popcash.net/show.js';document.body.appendChild(pop_tag)};
-</script>
+</script></div>
