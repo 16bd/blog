@@ -10,6 +10,3 @@
 
 ## ADVERTICA
 <ins style="width: 468px;height:60px" data-width="468" data-height="60" class="i2c082ebde1" data-domain="//data159.click" data-affquery="/910fb46f1b4373830609/2c082ebde1/?placementName=16bd"><script src="//data159.click/js/responsive.js" async></script></ins>
-
-# PopCash
-<div id="popcash_491706"><script type="text/javascript">var uid="491706",wid="742094",pop_fback="up",pop_tag=document.createElement("script");pop_tag.src="//cdn.popcash.net/show.js",document.body.appendChild(pop_tag),pop_tag.onerror=function(){pop_tag=document.createElement("script"),pop_tag.src="//cdn2.popcash.net/show.js",document.body.appendChild(pop_tag)};</script></div>
