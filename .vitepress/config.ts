@@ -122,7 +122,12 @@ export default defineConfig({
       name: 'msapplication-TileColor',
       content: '#603cba',
     }],
-    //Google AdSense
+    // Baidu
+    ['meta', {
+      name: 'baidu-site-verification',
+      content: 'codeva-ad5e4QVWIp',
+    }],
+    // Google AdSense
     ['meta', {
       name: 'google-adsense-account',
       content: 'ca-pub-8880838852405341',
