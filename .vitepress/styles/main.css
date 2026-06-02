@@ -226,6 +226,10 @@ html, body {
   min-height: inherit;
 }
 
+.bd-adsense:has(.adsbygoogle[data-ad-status="unfilled"]) {
+  display: none;
+}
+
 .aside .bd-adsense {
   margin-top: 0;
   margin-bottom: 16px;
