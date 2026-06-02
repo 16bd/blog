@@ -36,8 +36,10 @@ import {
 import { creators } from '../creators'
 
 import AppContainer from './components/AppContainer.vue'
+import AdsenseAd from './components/AdsenseAd.vue'
 import DocFooter from './components/DocFooter.vue'
 import HomePage from './components/HomePage.vue'
+import SeoHead from './components/SeoHead.vue'
 import Share from './components/Share.vue'
 import TocList from './components/TocList.vue'
 
@@ -56,16 +58,43 @@ import '../styles/vars.css'
 
 import('@nolebase/vitepress-plugin-inline-link-preview/client')
 
+const defaultAdSlots = {
+  articleTop: '1186044026',
+  articleBottom: '4849956868',
+  sidebar: '8697398610',
+}
+
 const ExtendedTheme: Theme = {
   extends: DefaultTheme,
   Layout: () => {
+    const topAdSlot = import.meta.env.VITE_ADSENSE_ARTICLE_TOP_SLOT || defaultAdSlots.articleTop
+    const bottomAdSlot = import.meta.env.VITE_ADSENSE_ARTICLE_BOTTOM_SLOT || defaultAdSlots.articleBottom
+    const sidebarAdSlot = import.meta.env.VITE_ADSENSE_SIDEBAR_SLOT || defaultAdSlots.sidebar
+
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
+      'layout-top': () => [
+        h(SeoHead),
+      ],
       'doc-top': () => [
         h(NolebaseHighlightTargetedHeading),
+        h(AdsenseAd, {
+          slot: topAdSlot,
+          minHeight: 120,
+        }),
       ],
       'doc-footer-before': () => [
+        h(AdsenseAd, {
+          slot: bottomAdSlot,
+          minHeight: 180,
+        }),
         h(DocFooter),
+      ],
+      'aside-outline-before': () => [
+        h(AdsenseAd, {
+          slot: sidebarAdSlot,
+          minHeight: 280,
+        }),
       ],
       'nav-bar-content-after': () => [
         h(NolebaseEnhancedReadabilitiesMenu),
@@ -85,7 +114,9 @@ const ExtendedTheme: Theme = {
      */
 
     app.component('HomePage', HomePage)
+    app.component('AdsenseAd', AdsenseAd)
     app.component('DocFooter', DocFooter)
+    app.component('SeoHead', SeoHead)
     app.component('Share', Share)
     app.component('TocList', TocList)
     app.component('AppContainer', AppContainer)

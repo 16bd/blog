@@ -8,10 +8,31 @@ import { InlineLinkPreviewElementTransform } from '@nolebase/vitepress-plugin-in
 import { buildEndGenerateOpenGraphImages } from '@nolebase/vitepress-plugin-og-image/vitepress'
 import { UnlazyImages } from '@nolebase/markdown-it-unlazy-img'
 
-import { discordLink, githubRepoLink, siteDescription, siteName, targetDomain } from '../metadata'
+import { discordLink, githubRepoLink, plainTargetDomain, siteDescription, siteName, targetDomain } from '../metadata'
 import { creatorNames, creatorUsernames } from './creators'
 import docsMetadata from './docsMetadata.json'
 import type { DefaultTheme } from 'vitepress'
+import type { HeadConfig } from 'vitepress'
+
+const adsensePublisherId = 'ca-pub-8880838852405341'
+
+function pagePathFromRelativePath(relativePath: string) {
+  if (!relativePath || relativePath === 'index.md')
+    return '/'
+
+  const pagePath = relativePath
+    .replace(/(^|\/)index\.md$/, '$1')
+    .replace(/\.md$/, '')
+    .split('/')
+    .map(segment => encodeURIComponent(segment))
+    .join('/')
+
+  return `/${pagePath}`
+}
+
+function pageUrlFromRelativePath(relativePath: string) {
+  return new URL(pagePathFromRelativePath(relativePath), `${targetDomain}/`).href
+}
 
 export default defineConfig({
   vue: {
@@ -130,18 +151,21 @@ export default defineConfig({
     // Google AdSense
     ['meta', {
       name: 'google-adsense-account',
-      content: 'ca-pub-8880838852405341',
+      content: adsensePublisherId,
     }],
-    ['script', { 'async': 'true', 'src': 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8880838852405341', 'crossorigin': 'anonymous' }],
-    // Mondiad
-    ['meta', {
-      name: 'mnd-ver',
-      content: 'lbll2shvnggovba1gpbdra',
-    }],
-    ['script', { 'async': 'true', 'src': 'https://ss.mrmnd.com/banner.js' }],
+    ['script', { async: 'true', src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsensePublisherId}`, crossorigin: 'anonymous' }],
+    ...(process.env.VITE_ENABLE_MONDIAD === 'true'
+      ? [
+          ['meta', {
+            name: 'mnd-ver',
+            content: 'lbll2shvnggovba1gpbdra',
+          }],
+          ['script', { async: 'true', src: 'https://ss.mrmnd.com/banner.js' }],
+        ] as HeadConfig[]
+      : []),
     // Proxying Plausible through Netlify | Plausible docs
     // https://plausible.io/docs/proxy/guides/netlify
-    ['script', { 'defer': 'true', 'data-domain': 'nolebase.ayaka.io', 'data-api': '/api/v1/page-external-data/submit', 'src': '/assets/page-external-data/js/script.js' }],
+    ['script', { defer: 'true', 'data-domain': plainTargetDomain, 'data-api': '/api/v1/page-external-data/submit', src: '/assets/page-external-data/js/script.js' }],
     
     // // PopCash Advertising
     // ['meta', {
@@ -157,6 +181,36 @@ export default defineConfig({
     // `],
 
   ],
+  transformHead({ pageData }) {
+    const url = pageUrlFromRelativePath(pageData.relativePath)
+    const isHome = pageData.relativePath === 'index.md'
+    const title = pageData.title || siteName
+    const description = pageData.description || siteDescription
+
+    return [
+      ['link', { rel: 'canonical', href: url }],
+      ['meta', { property: 'og:url', content: url }],
+      ['meta', { property: 'og:type', content: isHome ? 'website' : 'article' }],
+      ['script', { type: 'application/ld+json' }, JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': isHome ? 'WebSite' : 'Article',
+        name: title,
+        headline: title,
+        description,
+        url,
+        image: `${targetDomain}/og.png`,
+        publisher: {
+          '@type': 'Organization',
+          name: siteName,
+          logo: {
+            '@type': 'ImageObject',
+            url: `${targetDomain}/logo.svg`,
+          },
+        },
+        inLanguage: 'zh-CN',
+      })],
+    ]
+  },
   themeConfig: {
     outline: { label: '页面大纲', level: 'deep' },
     darkModeSwitchLabel: '切换主题',
@@ -266,6 +320,9 @@ export default defineConfig({
     },
   },
   async buildEnd(siteConfig) {
+    if (process.env.VITE_ENABLE_OG_IMAGE !== 'true')
+      return
+
     await buildEndGenerateOpenGraphImages({
       baseUrl: targetDomain,
       category: {

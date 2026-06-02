@@ -200,6 +200,43 @@ html, body {
   text-decoration: underline;
 }
 
+.bd-adsense {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 24px 0;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+
+.bd-adsense-label {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  z-index: 1;
+  color: var(--vp-c-text-3);
+  font-size: 12px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.bd-adsense .adsbygoogle {
+  min-height: inherit;
+}
+
+.aside .bd-adsense {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 959px) {
+  .aside .bd-adsense {
+    display: none;
+  }
+}
+
 /**
   Discord 链接按钮样式
 */

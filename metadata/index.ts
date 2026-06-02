@@ -12,6 +12,6 @@ export const githubRepoLink = 'https://github.com/nolebase/nolebase'
 export const discordLink = 'https://discord.gg/XuNFDcDZGj'
 
 /** 无协议前缀域名 */
-export const plainTargetDomain = '16bd.com'
+export const plainTargetDomain = 'www.16bd.com'
 /** 完整域名 */
 export const targetDomain = `https://${plainTargetDomain}`

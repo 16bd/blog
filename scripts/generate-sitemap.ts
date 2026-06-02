@@ -16,6 +16,23 @@ interface SitemapUrl {
   priority?: number
 }
 
+function escapeXml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
+function buildUrl(path = ''): string {
+  const normalizedPath = path
+    ? `/${path.replace(/^\/+/, '').split('/').map(segment => encodeURIComponent(segment)).join('/')}`
+    : '/'
+
+  return new URL(normalizedPath, `${targetDomain}/`).href
+}
+
 /**
  * 获取文件的最后修改时间
  * @param filePath 文件路径
@@ -56,7 +73,7 @@ function generateSitemapXml(urls: SitemapUrl[]): string {
   const urlsetEnd = '</urlset>'
 
   const urlElements = urls.map(url => {
-    let element = `  <url>\n    <loc>${url.loc}</loc>`
+    let element = `  <url>\n    <loc>${escapeXml(url.loc)}</loc>`
     
     if (url.lastmod) {
       element += `\n    <lastmod>${url.lastmod}</lastmod>`
@@ -108,7 +125,7 @@ async function generateSitemap() {
 
   // 添加首页
   sitemapUrls.push({
-    loc: targetDomain,
+    loc: buildUrl(),
     changefreq: 'daily',
     priority: 1.0,
   })
@@ -148,7 +165,7 @@ async function generateSitemap() {
     }
 
     sitemapUrls.push({
-      loc: `${targetDomain}/${relativePath}`,
+      loc: buildUrl(relativePath),
       lastmod,
       changefreq,
       priority,
@@ -169,11 +186,12 @@ async function generateSitemap() {
   console.log(`📊 包含 ${sitemapUrls.length} 个URL`)
   
   // 输出统计信息
+  const decodedUrls = sitemapUrls.map(url => decodeURI(url.loc))
   const stats = {
-    '技术专栏': sitemapUrls.filter(url => url.loc.includes('/技术专栏/')).length,
-    '职场感悟': sitemapUrls.filter(url => url.loc.includes('/职场感悟/')).length,
-    '开源推荐': sitemapUrls.filter(url => url.loc.includes('/开源推荐/')).length,
-    '杂谈随笔': sitemapUrls.filter(url => url.loc.includes('/杂谈随笔/')).length,
+    '技术专栏': decodedUrls.filter(url => url.includes('/技术专栏/')).length,
+    '职场感悟': decodedUrls.filter(url => url.includes('/职场感悟/')).length,
+    '开源推荐': decodedUrls.filter(url => url.includes('/开源推荐/')).length,
+    '杂谈随笔': decodedUrls.filter(url => url.includes('/杂谈随笔/')).length,
   }
   
   console.log('📈 各分类统计:')

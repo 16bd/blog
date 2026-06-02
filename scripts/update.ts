@@ -23,6 +23,10 @@ export const DIR_VITEPRESS = resolve(dirname(fileURLToPath(import.meta.url)), '.
 
 const git = Git(DIR_ROOT)
 
+function encodeRoutePath(path: string) {
+  return path.replace(/%/g, '%25')
+}
+
 /**
  * 列出所有的页面
  * @param dir 目录
@@ -66,7 +70,7 @@ async function addRouteItem(indexes: ArticleTree[], path: string, upgradeIndex =
   const item = {
     index: title,
     text: title,
-    link: `/${path.slice(0, suffixIndex)}`,
+    link: `/${encodeRoutePath(path.slice(0, suffixIndex))}`,
     lastUpdated: +await git.raw(['log', '-1', '--format=%at', path]) * 1000,
   }
   const linkItems = item.link.split('/')
